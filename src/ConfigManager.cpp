@@ -1,4 +1,7 @@
 #include "ConfigManager.h"
+extern "C" {
+#include "user_interface.h"
+}
 
 const byte DNS_PORT = 53;
 const char magicBytes[2] = {'C', 'M'};
@@ -272,13 +275,13 @@ void ConfigManager::setup() {
 
 
 	if (memcmp(magic, magicBytes, 2) == 0) {
-		if( hostname[0] != '\0' ) {
-			WiFi.hostname(hostname);
-		}
+//		if( hostname[0] != '\0' ) {
+//			WiFi.hostname( hostname );
+//		}
 		if( ipaddress.fromString( ipaddressChar) && netmask.fromString( netmaskChar ) && gateway.fromString( gatewayChar ) ) {
 			WiFi.config(ipaddress, gateway, netmask);
 		}
-		WiFi.mode(WIFI_STA);
+		WiFi.mode(WIFI_AP_STA);
 
 		WiFi.begin(ssid, password[0] == '\0' ? NULL : password);
 		if ( wifiConnected() ) {
