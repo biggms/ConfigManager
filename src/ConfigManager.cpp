@@ -281,7 +281,7 @@ void ConfigManager::setup() {
 		if( ipaddress.fromString( ipaddressChar) && netmask.fromString( netmaskChar ) && gateway.fromString( gatewayChar ) ) {
 			WiFi.config(ipaddress, gateway, netmask);
 		}
-		WiFi.mode(WIFI_AP_STA);
+		WiFi.mode(WIFI_STA);
 
 		WiFi.begin(ssid, password[0] == '\0' ? NULL : password);
 		if ( wifiConnected() ) {
